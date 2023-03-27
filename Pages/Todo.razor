@@ -1,0 +1,25 @@
+@page "/todo/{id}"
+
+@inject TodoItemService TodoItemService
+
+@if (TodoItem == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <h1>@TodoItem.Title</h1>
+    <p>@TodoItem.IsDone</p>
+}
+
+@code {
+    private TodoItem TodoItem;
+    
+    [Parameter]
+    public int Id { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        TodoItem = await TodoItemService.GetTodoItem(Id);
+    }
+}
