@@ -8,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+//Connect to API
+//builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://api.example.com/") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5261/") });
+
 
 var app = builder.Build();
 

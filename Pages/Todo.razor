@@ -1,25 +1,27 @@
-@page "/todo/{id}"
+@page "/todo/{id:int}"
 
-@inject TodoItemService TodoItemService
+@inject TodoService todoService
 
-@if (TodoItem == null)
+<p>Hello</p>
+
+@if (todoItem != null)
 {
-    <p>Loading...</p>
+    <h2>@todoItem.Name</h2>
+    <p>@todoItem.IsComplete</p>
 }
 else
 {
-    <h1>@TodoItem.Title</h1>
-    <p>@TodoItem.IsDone</p>
+    <p>Loading...</p>
 }
 
 @code {
-    private TodoItem TodoItem;
-    
+    private TodoItem todoItem;
+
     [Parameter]
     public int Id { get; set; }
-    
+
     protected override async Task OnInitializedAsync()
     {
-        TodoItem = await TodoItemService.GetTodoItem(Id);
+        todoItem = await todoService.GetTodoItem(Id);
     }
 }
