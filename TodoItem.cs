@@ -1,6 +1,11 @@
+using System.Text.Json.Serialization;
+
 public class TodoItem
 {
-    public int Id { get; set; }
+    [JsonPropertyName("id")]
+    public long Id { get; set; }
+    [JsonPropertyName("name")]
     public string? Name { get; set; }
-    public bool IsComplete { get; set; }
+    [JsonPropertyName("isCompleted")]
+    public bool IsComplete { get; set; } = false;
 }
